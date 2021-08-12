@@ -1,31 +1,31 @@
 Package.describe({
   summary: 'Accounts Templates unstyled.',
-  version: '1.14.2',
-  name: 'useraccounts:unstyled',
-  git: 'https://github.com/meteor-useraccounts/unstyled.git',
+  version: '2.0.0',
+  name: 'harrison:unstyled',
+  git: 'https://github.com/harrisonhunter/unstyled',
 });
 
-Package.on_use(function(api, where) {
-  api.versionsFrom('METEOR@1.0');
+Package.onUse(function (api, where) {
+  api.versionsFrom('METEOR@2.3.4');
 
   api.use([
-    'templating',
+    'templating@1.4.1',
     'underscore',
   ], 'client');
 
   api.use([
-    'useraccounts:core',
+    'harrison:core',
   ], ['client', 'server']);
 
   // Requires all routing packages loads before this asking for weak dependencies.
-  api.use('useraccounts:flow-routing@1.14.2', ['client', 'server'], {weak: true});
-  api.use('useraccounts:iron-routing@1.14.2', ['client', 'server'], {weak: true});
+  api.use('useraccounts:flow-routing@1.14.2 || 2.0.0', ['client', 'server'], { weak: true });
+  api.use('useraccounts:iron-routing@1.14.2 || 2.0.0', ['client', 'server'], { weak: true });
 
   api.imply([
-    'useraccounts:core@1.14.2',
+    'harrison:core@2.0.0',
   ], ['client', 'server']);
 
-  api.add_files([
+  api.addFiles([
     'lib/at_error.html',
     'lib/at_error.js',
     'lib/at_form.html',
@@ -67,10 +67,10 @@ Package.on_use(function(api, where) {
   ], ['client']);
 });
 
-Package.on_test(function(api) {
+Package.onTest(function (api) {
   api.use([
-    'useraccounts:unstyled',
-    'useraccounts:core@1.14.2',
+    'harrison:unstyled',
+    'harrison:core@2.0.0',
   ]);
 
   api.use([
@@ -79,7 +79,7 @@ Package.on_test(function(api) {
     'test-helpers'
   ], ['client', 'server']);
 
-  api.add_files([
+  api.addFiles([
     'tests/tests.js'
   ], ['client', 'server']);
 });
